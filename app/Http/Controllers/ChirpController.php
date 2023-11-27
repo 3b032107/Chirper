@@ -30,15 +30,16 @@ class ChirpController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    //儲存Chirp
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'message' => 'required|string|max:255',
+            'message' => 'required|string|max:255', //訊息字數最大上限為255
         ]);
 
         $request->user()->chirps()->create($validated);
 
-        return redirect(route('chirps.index'));
+        return redirect(route('chirps.index')); //儲存後重新導引到Chirp的頁面
     }
 
     /**
